@@ -2,11 +2,19 @@ package fr.uga.im2ag.l3.miage.db.model;
 
 import java.util.List;
 
-// TODO ajouter une named query pour une des requêtes à faire dans le repository
-public class Teacher extends Person {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.*;
 
+// TODO ajouter une named query pour une des requÃªtes Ã  faire dans le repository
+@Entity
+@DiscriminatorValue("teacher")
+@NamedQuery(name="Teacher.findAll", query="SELECT t FROM Teacher t")
+public class Teacher extends Person {
+    @ManyToOne
     private Subject teaching;
+    @OneToMany
     private List<Student> favorites;
+    @OneToOne
     private GraduationClass heading;
 
     public Subject getTeaching() {
