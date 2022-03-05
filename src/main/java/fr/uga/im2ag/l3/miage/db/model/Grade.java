@@ -1,10 +1,19 @@
 package fr.uga.im2ag.l3.miage.db.model;
 
-// TODO ajouter une named query pour une des requêtes à faire dans le repository
-public class Grade {
+import javax.persistence.*;
 
+
+// TODO ajouter une named query pour une des requÃªtes Ã  faire dans le repository
+@Entity
+@NamedQuery(name="Grade.findAll", query="SELECT g FROM Grade g")
+public class Grade {
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToOne
     private Subject subject;
+
+    @Column(name = "grade",updatable = false)
     private Float value;
     private Float weight;
 
@@ -39,3 +48,4 @@ public class Grade {
         return this;
     }
 }
+
